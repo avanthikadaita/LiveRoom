@@ -109,7 +109,6 @@ export function ListingCard({ card: c, carAsked, carUnknown, modelBroken, large 
         <div className="flex flex-wrap items-center gap-1.5">
           {dims && <span className="badge">{dims}</span>}
           {dims && c.dims_approx && <span className="badge badge-approx">approx</span>}
-          {c.is_approx_model && <span className="badge badge-approx" title="A generic shape at this item's size, not a scan of it">size stand-in</span>}
           {c.savings_usd != null && c.savings_usd > 0 && <span className="badge badge-go">Saves ~${c.savings_usd} vs. new (est.)</span>}
           {c.car_fit === 'fits' && <span className="badge badge-go" data-testid="car-fit">✅ Fits your {car} (est.)</span>}
           {c.car_fit === 'seats_folded' && <span className="badge badge-warn" data-testid="car-fit">⚠️ {car}: seats folded (est.)</span>}
@@ -126,20 +125,11 @@ export function ListingCard({ card: c, carAsked, carUnknown, modelBroken, large 
 
         <div className="mt-auto flex flex-col gap-2 pt-2">
           {hasAr ? (
-            <>
-              <button className="btn btn-tape" data-testid="ar-button" onClick={openAr}>
-                {c.is_approx_model ? 'Check the size in your room' : 'See it in your room'}
-              </button>
-              {c.is_approx_model && (
-                <p className="text-xs text-muted" data-testid="approx-note">
-                  Generic shape at this item&apos;s size. It shows the space it takes, not its look. See the photo for that.
-                </p>
-              )}
-            </>
+            <button className="btn btn-tape" data-testid="ar-button" onClick={openAr}>See it in your room</button>
           ) : c.has_model && c.glb_url ? (
             <button className="btn btn-tape" onClick={() => setPreview(true)}>Open 3D preview</button>
           ) : (
-            <p className="badge justify-center !py-3 text-sm" data-testid="model-coming">3D model coming</p>
+            <p className="badge justify-center !py-3 text-sm" data-testid="model-coming">No 3D model of this one yet</p>
           )}
           <div className="flex flex-wrap gap-2">
             {hasAr && c.glb_url && <button className="btn btn-quiet flex-1 whitespace-nowrap !px-2 text-sm" onClick={() => setPreview(true)}>3D preview</button>}
@@ -150,7 +140,7 @@ export function ListingCard({ card: c, carAsked, carUnknown, modelBroken, large 
         </div>
       </div>
 
-      {preview && <ModelPreview glb={c.glb_url} usdz={c.usdz_url} title={c.is_approx_model ? `${c.title} (size stand-in)` : c.title} dims={dims} onClose={() => setPreview(false)} />}
+      {preview && <ModelPreview glb={c.glb_url} usdz={c.usdz_url} title={c.title} dims={dims} onClose={() => setPreview(false)} />}
       {qr && <QrDialog id={c.id} title={c.title} onClose={() => setQr(false)} />}
     </article>
   );

@@ -24,9 +24,12 @@ describe('hybrid search SQL (fixture database)', () => {
     expect(cards.length).toBeLessThanOrEqual(8);
     for (const c of cards) {
       expect(['ready', 'fallback_ready']).toContain(c.asset_status);
-      expect(c.has_model).toBe(true);
-      expect(c.ar_href).toMatch(/^https:\/\/.+\.usdz#allowsContentScaling=0&callToAction=View%20listing&checkoutTitle=/);
+      // AR only for a model made from the listing's photos; a generic stand-in is listed without AR
+      expect(c.has_model).toBe(c.asset_status === 'ready' && !c.is_approx_model);
+      if (c.has_model) expect(c.ar_href).toMatch(/^https:\/\/.+\.usdz#allowsContentScaling=0&callToAction=View%20listing&checkoutTitle=/);
+      else expect(c.ar_href).toBeNull();
     }
+    expect(cards.some((c) => c.has_model)).toBe(true);
     expect(cards.map((c) => c.id)).not.toContain(9); // exporting
     expect(cards.map((c) => c.id)).not.toContain(12); // failed
   });

@@ -25,7 +25,8 @@ type Computed = {
 };
 
 export function toCard(r: RawItem, c: Computed, now = new Date()): Card {
-  const hasModel = !!r.usdz_url && (r.asset_status === 'ready' || r.asset_status === 'fallback_ready');
+  // Only a model built from this listing's own photos counts. A generic stand-in never poses as the item in 3D/AR.
+  const hasModel = !!r.usdz_url && r.asset_status === 'ready' && !r.is_approx_model;
   const dimsApprox =
     r.dims_source !== 'listing_text' ||
     (r.listed_w != null && r.w != null && Math.abs(r.listed_w - r.w) > 2) ||

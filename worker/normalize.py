@@ -265,6 +265,37 @@ def parse_craigslist_search(html: str, base_url: str = "https://sandiego.craigsl
     return rows
 
 
+def parse_craigslist_post(html: str, url: str) -> dict | None:
+    """One Craigslist post page (Web Unlocker HTML) -> the same record shape as a search result row."""
+    from selectolax.lexbor import LexborHTMLParser
+
+    tree = LexborHTMLParser(html)
+    item: dict = {}
+    for s in tree.css("script[type='application/ld+json']"):
+        try:
+            data = json.loads(s.text() or "{}")
+        except ValueError:
+            continue
+        if isinstance(data, dict) and data.get("offers") and data.get("name"):
+            item = data
+            break
+    title_el = tree.css_first("#titletextonly")
+    title = (title_el.text(strip=True) if title_el else item.get("name") or "").strip()
+    if not title:
+        return None
+    body = tree.css_first("#postingbody")
+    desc = body.text(strip=True).replace("QR Code Link to This Post", "").strip() if body else None
+    offers = item.get("offers") or {}
+    place = offers.get("availableAtOrFrom") or {}
+    geo_, addr = place.get("geo") or {}, place.get("address") or {}
+    images = item.get("image") or []
+    price_el = tree.css_first(".price")
+    return {"url": url, "title": title, "description": desc,
+            "price": offers.get("price") or (price_el.text(strip=True) if price_el else None),
+            "location": addr.get("addressLocality"), "latitude": geo_.get("latitude"), "longitude": geo_.get("longitude"),
+            "images": [i.replace("_600x450", "_1200x900") for i in (images if isinstance(images, list) else [images])]}
+
+
 def normalize_craigslist(rec: dict, free_section: bool = False) -> dict:
     url = rec.get("url") or ""
     pid = cl_id(url)

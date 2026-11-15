@@ -57,6 +57,16 @@ def parse_url(url: str) -> tuple[str, str]:
 def fetch_listing(ctx: Ctx, source: str, url: str) -> None:
     """Collect one item page through Bright Data and upsert it (same normalizer as the worker)."""
     s = ctx.settings
+    if source == "craigslist":
+        from worker.normalize import parse_craigslist_post
+        print("  fetching the post through Bright Data Web Unlocker...", flush=True)
+        rec = parse_craigslist_post(ctx.bd.unlock(url), url.split("?")[0])
+        if not rec:
+            raise ImportFailed(f"could not read the Craigslist post at {url} (removed, or the page layout changed)")
+        stats = ingest(ctx, "craigslist", [rec], cap=5)
+        if not (stats["inserted"] or stats["updated"]):
+            raise ImportFailed(f"the post was skipped by the normalizer ({stats})")
+        return
     dataset = {"fb_marketplace": s.bd_fb, "ebay": s.bd_ebay}.get(source)
     if not dataset:
         raise ImportFailed(f"{source} listings cannot be fetched automatically yet: run the worker's scrape first, "
