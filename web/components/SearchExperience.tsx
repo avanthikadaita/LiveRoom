@@ -244,7 +244,7 @@ export function SearchExperience({ places }: { places: string[] }) {
               onKeyDown={(e) => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) { e.preventDefault(); void startRec(); } }}
               onKeyUp={(e) => { if (e.key === ' ' || e.key === 'Enter') stopRec(); }}
               onContextMenu={(e) => e.preventDefault()}
-              className={`grid shrink-0 select-none place-items-center rounded-full border-[1.5px] border-ink bg-tape font-display font-bold
+              className={`grid shrink-0 select-none place-items-center rounded-full border-[1.5px] border-ink bg-[#8d402e] text-white font-display font-bold
                 ${data ? 'h-16 w-16' : 'h-32 w-32'} ${phase === 'recording' ? 'mic-ring scale-105' : ''} disabled:opacity-60`}
               style={{ touchAction: 'none', WebkitTouchCallout: 'none' }}
             >

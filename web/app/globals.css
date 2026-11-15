@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
-/* LiveRoom tokens: moving-day vernacular. Tape-measure yellow, blanket blue, ink navy on cool paper. */
+/* LiveRoom tokens: moving-day vernacular. Brown tape accents, blanket blue, ink navy on cool paper. */
 @theme {
   --color-paper: #f6f7f3;
   --color-card: #ffffff;
   --color-ink: #15233b;
   --color-muted: #566176;
   --color-line: #d8dde4;
-  --color-tape: #ffc928;
-  --color-tape-deep: #e0a800;
+  --color-tape: #8d402e;
+  --color-tape-deep: #6f2e1d;
   --color-blanket: #2449b0;
   --color-go: #13703f;
   --color-go-soft: #e3f3ea;
@@ -83,7 +83,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @keyframes shimmer { to { background-position: -200% 0; } }
 
 .mic-ring { animation: ring 1.1s ease-out infinite; }
-@keyframes ring { from { box-shadow: 0 0 0 0 rgb(255 201 40 / 0.75); } to { box-shadow: 0 0 0 26px rgb(255 201 40 / 0); } }
+@keyframes ring { from { box-shadow: 0 0 0 0 rgb(141 64 46 / 0.75); } to { box-shadow: 0 0 0 26px rgb(141 64 46 / 0); } }
 
 @media (prefers-reduced-motion: reduce) {
   .skeleton, .mic-ring { animation: none; }

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     'Say what you need. LiveRoom finds used furniture near you on Craigslist, Facebook Marketplace and eBay, and shows the real item at true size in AR.',
   metadataBase: process.env.NEXT_PUBLIC_SITE_URL ? new URL(process.env.NEXT_PUBLIC_SITE_URL) : undefined,
 };
-export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#ffc928' };
+export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#8d402e' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
