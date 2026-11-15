@@ -32,7 +32,7 @@ export default function ImpactPage() {
     ['Free items right now', n(s?.free_items), 'Listed at $0 by their owners.'],
     ['Savings available vs. buying new', s ? `~$${n(s.savings_available)}` : null, 'Estimate: Amazon median for the category minus the used price, summed over active listings.'],
     ['Times someone placed an item in AR', n(s?.ar_views), 'Counted when “See it in your room” is tapped.'],
-    ['Furniture kept in use', s ? `~${n(s.lbs_diverted)} lb` : null, 'Estimate: weight of items whose listing was opened from LiveRoom.'],
+    ['Furniture kept in use', s ? `~${n(s.lbs_diverted)} lb` : null, 'Estimate: weight of items whose listing was opened from FitCheck.'],
     ['Items you can place in AR', n(s?.models_ready), '3D models made from listing photos, at real size.'],
   ];
 
@@ -41,7 +41,7 @@ export default function ImpactPage() {
       <h1 className="text-4xl font-extrabold">Impact</h1>
       <p className="mt-2 max-w-[65ch] text-lg text-muted">
         Americans throw away about 12 million tons of furniture a year, and most of it is landfilled (EPA estimate). Every number below is an estimate from
-        LiveRoom&apos;s own database, and says so.
+        FitCheck&apos;s own database, and says so.
       </p>
       {down && <p role="alert" className="mt-4 rounded-lg bg-warn-soft px-3 py-2 font-semibold text-warn">Can&apos;t reach the database. Retrying every 10 seconds…</p>}
       <dl className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-testid="impact-tiles">

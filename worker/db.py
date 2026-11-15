@@ -112,7 +112,7 @@ class DB:
                 and (a.locked_at is null or a.locked_at < now() - make_interval(mins => %(lock)s))
                 and (a.next_attempt_at is null or a.next_attempt_at <= now())
                 {extra_where}
-              order by (l.source = 'liveroom') desc, l.demo_pin desc, a.updated_at
+              order by (l.source = 'FitCheck') desc, l.demo_pin desc, a.updated_at
               limit 1 for update of a skip locked)
             returning *
             """,

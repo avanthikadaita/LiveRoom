@@ -1,10 +1,10 @@
-# LiveRoom handoff (Person A work, Sat Nov 14 2026)
+# FitCheck handoff (Person A work, Sat Nov 14 2026)
 
 Paste this into a new Claude session together with README.md, NOTES.md and web/NOTES.md.
 
 ## State right now
 
-- Live site: https://liveroom-lac.vercel.app (Vercel project "liveroom", Root Directory `web`, builds from GitHub `main`).
+- Live site: https://FitCheck-lac.vercel.app (Vercel project "FitCheck", Root Directory `web`, builds from GitHub `main`).
   Env vars are set in Vercel (DB, Gemini, ElevenLabs, Blob, admin token, Bright Data).
 - Neon project misty-band-10705228 (default branch is called `production`). Blob store qs1nw3xcnxvisvzh.
 - Secrets live ONLY in `worker/.env`, `web/.env.local` and the git-ignored `SanD Hacks API Keys` file. Never commit them.
@@ -16,7 +16,7 @@ Paste this into a new Claude session together with README.md, NOTES.md and web/N
   Logs: `worker/.cache/worker_tag.log`, `worker/.cache/worker_run.log`.
 - Tests: `python -m pytest worker/tests` (needs `node scripts/localpg/server.mjs 54329 memory` and
   `TEST_DATABASE_URL=postgres://postgres@127.0.0.1:54329/postgres`), `npm --prefix web test`, `npx tsc --noEmit` in web.
-  Pre-demo check: `python -m scripts.demo_check --site https://liveroom-lac.vercel.app`.
+  Pre-demo check: `python -m scripts.demo_check --site https://FitCheck-lac.vercel.app`.
 
 ## 3D providers (worker/.env)
 

@@ -26,7 +26,7 @@ export function getMemory(): Memory | undefined {
     return undefined;
   }
   try {
-    const storage = new PostgresStore({ id: 'liveroom-mastra', connectionString: url, schemaName: 'mastra' });
+    const storage = new PostgresStore({ id: 'FitCheck-mastra', connectionString: url, schemaName: 'mastra' });
     g.__lr_mastra_memory = new Memory({
       storage,
       options: {

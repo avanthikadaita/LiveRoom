@@ -1,4 +1,4 @@
-# LiveRoom: Build Spec for Claude Code
+# FitCheck: Build Spec for Claude Code
 
 Read this whole file before writing code. It is the source of truth for scope, architecture, accounts, known pitfalls and tests. When an external API detail here conflicts with that provider's current docs, the docs win: check them first and note the difference in `NOTES.md`.
 
@@ -14,7 +14,7 @@ Read this whole file before writing code. It is the source of truth for scope, a
 
 ## 1. Product
 
-**One-liner:** Amazon shows you new furniture in your room. LiveRoom does it for anything on Craigslist.
+**One-liner:** Amazon shows you new furniture in your room. FitCheck does it for anything on Craigslist.
 
 **Buyer flow (build this first, it is the MVP):**
 1. The user opens the site in iPhone Safari, taps the mic, and says: "desk lamp and side table under $40, warm wood, I drive a Civic."
@@ -548,7 +548,7 @@ Plus a Next.js error boundary on every route with a "Reload" action, and loading
 
 The shopping assistant in `/web` is a **Mastra agent** (TypeScript), replacing the single Gemini function call in `/api/search`. Check Mastra's current docs (`mastra.ai/llms.txt`) and Neon's "Mastra + Neon" guide before coding.
 
-**Agent `liveroomShopper`** (model: Gemini via Mastra's model router or an AI SDK Google provider, so the key-rotation from `limits.ts` still applies; cap tool loops at 4 steps per turn):
+**Agent `FitCheckShopper`** (model: Gemini via Mastra's model router or an AI SDK Google provider, so the key-rotation from `limits.ts` still applies; cap tool loops at 4 steps per turn):
 - Tools (each a typed Mastra tool with zod input/output, timeouts and the section 14 error mapping):
   - `resolveOrigin(place_text | coords)`: uses `geo_sd.json`, browser coords, or UCSD.
   - `searchListings(filters)`: the single hybrid SQL query from section 7.

@@ -4,9 +4,9 @@ import { DebugConsole } from '@/components/DebugConsole';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'LiveRoom: see used furniture in your room before you pick it up',
+  title: 'FitCheck: see used furniture in your room before you pick it up',
   description:
-    'Say what you need. LiveRoom finds used furniture near you on Craigslist, Facebook Marketplace and eBay, and shows the real item at true size in AR.',
+    'Say what you need. FitCheck finds used furniture near you on Craigslist, Facebook Marketplace and eBay, and shows the real item at true size in AR.',
   metadataBase: process.env.NEXT_PUBLIC_SITE_URL ? new URL(process.env.NEXT_PUBLIC_SITE_URL) : undefined,
 };
 export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#8d402e' };
@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="bg-paper">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
             <Link href="/" className="font-display text-2xl font-extrabold tracking-tight">
-              LiveRoom
+              FitCheck
             </Link>
             <nav aria-label="Main" className="flex gap-0.5 text-sm font-semibold sm:gap-1">
               <Link className="rounded-md px-1.5 py-2 hover:bg-white sm:px-2.5" href="/corner">Corner</Link>

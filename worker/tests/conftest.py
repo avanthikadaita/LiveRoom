@@ -1,6 +1,6 @@
 """Shared fixtures.
 
-Database tests run in their own schema (liveroom_test_*) on TEST_DATABASE_URL, or on
+Database tests run in their own schema (FitCheck_test_*) on TEST_DATABASE_URL, or on
 DATABASE_URL_DIRECT when that is not set: point TEST_DATABASE_URL at a Neon test branch, or at the
 local PGlite stand-in (`node scripts/localpg/server.mjs`). They are skipped when no database answers.
 """
@@ -57,7 +57,7 @@ def db(db_url):
     from scripts.migrate import apply
     from worker.db import DB
 
-    schema = f"liveroom_test_{uuid.uuid4().hex[:8]}"
+    schema = f"FitCheck_test_{uuid.uuid4().hex[:8]}"
     apply(db_url, quiet=True, schema=schema)
     d = DB(db_url, schema=schema)
     try:

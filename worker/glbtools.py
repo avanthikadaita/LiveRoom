@@ -90,7 +90,7 @@ def part(mesh: tuple[np.ndarray, ...], **kw) -> Part:
     return Part(positions=pos, normals=nor, indices=idx, uvs=uv, **kw)
 
 
-def build_glb(parts: list[Part], generator: str = "LiveRoom glbtools") -> bytes:
+def build_glb(parts: list[Part], generator: str = "FitCheck glbtools") -> bytes:
     bin_ = io.BytesIO()
     views, accessors, meshes, nodes, materials, images, textures = [], [], [], [], [], [], []
 

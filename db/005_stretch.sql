@@ -1,10 +1,10 @@
 -- Stretch features (spec 11): corner sets and the seller flow. Idempotent.
 
--- A seller's own item becomes a listing with source 'liveroom' (inactive until the seller publishes it),
+-- A seller's own item becomes a listing with source 'FitCheck' (inactive until the seller publishes it),
 -- so it goes through the same cutout -> 3D -> export pipeline as scraped listings.
 alter table listings drop constraint if exists listings_source_check;
 alter table listings add constraint listings_source_check
-  check (source in ('fb_marketplace', 'craigslist', 'ebay', 'liveroom'));
+  check (source in ('fb_marketplace', 'craigslist', 'ebay', 'FitCheck'));
 
 -- ---------------------------------------------------------------- corner sets
 -- The web app (or the Mastra furnishCorner workflow) inserts a set with status 'pending' and its items;

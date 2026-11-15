@@ -88,10 +88,10 @@ Tests run in their own schema and drop it.
   a chair in front of a desk faces it (yaw 180); others alternate right/left angled 20 deg. One USDZ + GLB per set,
   validated for overall height. Set 1 (chair + side table + lamp) built live on Neon/Blob.
 - **Seller flow** (`stages/seller.py`, db/005): `seller_drafts` row (photo, height, title, ask) -> hidden listing
-  with source `liveroom` -> tagged (or category guessed from the title) -> scaled to the seller's height ->
+  with source `FitCheck` -> tagged (or category guessed from the title) -> scaled to the seller's height ->
   always real 3D, ahead of the queue. Fair price = p25/median/p75 of active comparable listings (>= 3 comps,
   similar height preferred). Draft goes ready/failed with its asset.
-- **Mastra** (`web/mastra`, @mastra/core 1.83): `liveroomFilterExtractor` agent (Gemini flash-lite, structured
+- **Mastra** (`web/mastra`, @mastra/core 1.83): `FitCheckFilterExtractor` agent (Gemini flash-lite, structured
   output, key rotation, keyword fallback) + `furnishCorner` workflow + code scorer. Eval on 25 labelled queries:
   LLM 0.995 (24/25 exact, median ~860 ms). Keyword fallback also 0.995, but it was tuned on the same set, so read
   that as an upper bound.

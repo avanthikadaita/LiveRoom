@@ -1,7 +1,7 @@
 """Pre-judging check (spec section 9). Prints PASS or FAIL per line and warms Neon. Exit code 1 on any FAIL.
 
     python -m scripts.demo_check
-    python -m scripts.demo_check --site https://liveroom.example --min-pinned 8
+    python -m scripts.demo_check --site https://FitCheck.example --min-pinned 8
 
 Web checks assume the routes in spec section 7: POST /api/tts {text} -> audio bytes,
 POST /api/stt (multipart field "audio") -> {text}, POST /api/search {text} -> {results: [...]} (web/lib/search/schema.ts).

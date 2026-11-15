@@ -1,1 +1,1 @@
-{"name":"liveroom-localpg","private":true,"type":"module","description":"Local Postgres+pgvector stand-in (PGlite) for tests when Neon is unreachable","scripts":{"start":"node server.mjs"},"dependencies":{"@electric-sql/pglite":"^0.5.16","@electric-sql/pglite-socket":"^0.2.19"}}
+{"name":"FitCheck-localpg","private":true,"type":"module","description":"Local Postgres+pgvector stand-in (PGlite) for tests when Neon is unreachable","scripts":{"start":"node server.mjs"},"dependencies":{"@electric-sql/pglite":"^0.5.16","@electric-sql/pglite-socket":"^0.2.19"}}

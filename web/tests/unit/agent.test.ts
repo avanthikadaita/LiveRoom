@@ -38,7 +38,7 @@ beforeEach(() => {
 });
 afterEach(() => { globalThis.fetch = realFetch; });
 
-describe('liveroomShopper agent', () => {
+describe('FitCheckShopper agent', () => {
   it('calls searchListings through Mastra and returns the unchanged output contract', async () => {
     mockGoogle((turn) =>
       turn === 0

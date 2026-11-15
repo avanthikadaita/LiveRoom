@@ -1,4 +1,4 @@
-# LiveRoom
+# FitCheck
 
 See real second-hand furniture from Craigslist, Facebook Marketplace and eBay in your own room, in AR on your
 phone, before you drive across town for it. Buying used keeps furniture out of landfill, and the AR model
@@ -25,7 +25,7 @@ Bright Data ──► worker (Python) ──────────────
                                                                              voice search, AR cards,
                                                                              /corner, /sell, /pipeline,
                                                                              /impact, /admin
-                                                                             web/mastra: liveroomShopper
+                                                                             web/mastra: FitCheckShopper
                                                                              agent + furnishCorner workflow
 ```
 
@@ -34,7 +34,7 @@ Bright Data ──► worker (Python) ──────────────
 | **Bright Data** | Datasets API for FB Marketplace (`discover_by=url`) and eBay (`keywords`). Web Unlocker zone `web_unlocker1` for Craigslist search pages. Both are parsed and normalized into one schema (`worker/normalize.py`). |
 | **Neon** | Postgres 18 + pgvector. Holds listings, tags, 768-dim embeddings, the asset pipeline state machine, corner sets and seller drafts. `listing_cards()` computes distance, drive time, pickup cost and total in SQL, so cards, search and spoken replies always agree. `scripts/branch_demo` makes a demo branch. |
 | **MLH Gemini** | Vision tagging: category, style, condition, W×D×H and best photo for every listing. `gemini-embedding-001` for semantic search (documents and queries, 768 dims). One function call turns a spoken request into search filters (~1 s). The free quota is per model per key, so both the worker and the web rotate keys and track each model separately. |
-| **Mastra** | `web/mastra`: the `liveroomShopper` agent (5 tools, Neon-backed memory; `SEARCH_ENGINE=agent`) and the `furnishCorner` workflow behind **/corner**: `plan → .foreach(search-category, concurrency 3, retries 2) → pick-within-budget → queue set`. The worker then arranges the picked items into one USDZ. 25-query filter eval: `npm --prefix web run evals`. |
+| **Mastra** | `web/mastra`: the `FitCheckShopper` agent (5 tools, Neon-backed memory; `SEARCH_ENGINE=agent`) and the `furnishCorner` workflow behind **/corner**: `plan → .foreach(search-category, concurrency 3, retries 2) → pick-within-budget → queue set`. The worker then arranges the picked items into one USDZ. 25-query filter eval: `npm --prefix web run evals`. |
 | **ElevenLabs** | Speech to text (`scribe_v1`) for voice search, text to speech (`eleven_flash_v2_5`) reads every result summary aloud, including the corner plan. |
 | **GoDaddy** | Person B/C: domain. |
 
@@ -116,7 +116,7 @@ python -m worker.run --loop --stages seller,select,cutout,gen,export,sets
 
    The result is one USDZ you can walk around.
 6. **Seller flow.** A `seller_drafts` row needs a photo, the item's height and a title. The worker turns it into
-   a hidden `liveroom` listing with a real 3D model. It also suggests a fair price: the p25 / median / p75 of
+   a hidden `FitCheck` listing with a real 3D model. It also suggests a fair price: the p25 / median / p75 of
    similar active listings, used only when there are at least 3 comparables.
 
 ### Person D: hand-made models (Tripo / Meshy websites)

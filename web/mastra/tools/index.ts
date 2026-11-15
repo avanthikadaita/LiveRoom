@@ -1,4 +1,4 @@
-// Typed Mastra tools for the liveroomShopper agent. Each one wraps a tested module from /lib,
+// Typed Mastra tools for the FitCheckShopper agent. Each one wraps a tested module from /lib,
 // has a timeout through the underlying client, and returns a small result the model can read.
 import { createTool } from '@mastra/core/tools';
 import { z } from 'zod';

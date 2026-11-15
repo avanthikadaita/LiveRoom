@@ -1,4 +1,4 @@
-"""LiveRoom worker.
+"""FitCheck worker.
 
     python -m worker.run --loop        # all stages; --stages a,b to pick
 

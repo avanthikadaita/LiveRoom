@@ -82,7 +82,7 @@ class HuggingFace(Provider):
 
     def submit(self, views: list[View], key: str) -> str:
         job_id = uuid.uuid4().hex[:12]
-        tmp = tempfile.mkdtemp(prefix="liveroom_hf_")
+        tmp = tempfile.mkdtemp(prefix="FitCheck_hf_")
         paths = []
         for i, v in enumerate(views[:1]):       # single best photo: the spaces' multi-image modes are unreliable
             p = os.path.join(tmp, f"view{i}.png")

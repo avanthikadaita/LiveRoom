@@ -7,7 +7,7 @@ import type { Card } from '@/lib/search/types';
 import { ModelPreview } from './ModelPreview';
 import { QrDialog } from './QrDialog';
 
-const SOURCE: Record<Card['source'], string> = { craigslist: 'Craigslist', fb_marketplace: 'Facebook Marketplace', ebay: 'eBay', liveroom: 'LiveRoom seller' };
+const SOURCE: Record<Card['source'], string> = { craigslist: 'Craigslist', fb_marketplace: 'Facebook Marketplace', ebay: 'eBay', FitCheck: 'FitCheck seller' };
 const num = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
 const smallMoney = (n: number) => (n < 1 ? `$${n.toFixed(2)}` : `$${Math.round(n)}`);
 

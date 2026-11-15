@@ -1,7 +1,7 @@
 """Stage: seller (spec 11.2). A seller's photo + measured height -> a true-scale 3D listing + fair price.
 
 The web app uploads the photo to Blob and inserts a `seller_drafts` row (status 'new'). This stage:
-  1. creates an inactive listing (source 'liveroom') for it, so the normal cutout -> 3D -> export pipeline runs
+  1. creates an inactive listing (source 'FitCheck') for it, so the normal cutout -> 3D -> export pipeline runs
   2. tags it with Gemini (category, style, proportions). The seller's measured height is the true height;
      width and depth keep the tagger's proportions, scaled to that height. If Gemini is out of quota the
      category comes from the title, so a seller is never stuck.
@@ -109,7 +109,7 @@ def start_draft(ctx: Ctx, d: dict) -> None:
     title = (d.get("title") or "").strip() or "Item for sale"
     lst = db.one("""insert into listings (source, external_id, url, title, price_usd, ships, city, lat, lng, photo_urls,
                                           raw, is_active, posted_at)
-                    values ('liveroom', %(ext)s, %(url)s, %(title)s, %(price)s, false, %(city)s, %(lat)s, %(lng)s,
+                    values ('FitCheck', %(ext)s, %(url)s, %(title)s, %(price)s, false, %(city)s, %(lat)s, %(lng)s,
                             array[%(photo)s], %(raw)s, false, now())
                     on conflict (source, external_id) do update set photo_urls = excluded.photo_urls, title = excluded.title
                     returning *""",

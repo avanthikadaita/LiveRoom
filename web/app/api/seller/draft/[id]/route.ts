@@ -48,7 +48,7 @@ export const POST = route('api.seller.draft.publish', async (req: Request, ctx: 
   if (!d || !d.edit_token || d.edit_token !== body.token) throw err.notFound('That draft');
   if (d.status !== 'ready' || !d.listing_id) throw err.badRequest('The 3D model is not ready yet.');
   await query(
-    `update listings set is_active = true, price_usd = $2, scraped_at = now() where id = $1 and source = 'liveroom'`,
+    `update listings set is_active = true, price_usd = $2, scraped_at = now() where id = $1 and source = 'FitCheck'`,
     [d.listing_id, body.ask_usd], { branch: 'main' },
   );
   await query('update seller_drafts set ask_usd = $2, updated_at = now() where id = $1', [id, body.ask_usd], { branch: 'main' });

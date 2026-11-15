@@ -227,7 +227,7 @@ export function SearchExperience({ places }: { places: string[] }) {
           <div>
             <h1 className="text-[clamp(2.4rem,7vw,4.4rem)] font-extrabold">Used furniture, at true size, in your room.</h1>
             <p className="mt-4 max-w-[52ch] text-lg text-muted">
-              Say what you need. LiveRoom searches Craigslist, Facebook Marketplace and eBay near you, then turns the
+              Say what you need. FitCheck searches Craigslist, Facebook Marketplace and eBay near you, then turns the
               listing photo into a 3D model you can place with your phone before you drive anywhere.
             </p>
           </div>

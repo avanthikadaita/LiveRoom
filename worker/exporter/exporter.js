@@ -1,4 +1,4 @@
-// LiveRoom exporter page (spec 6.5). Runs in headless Chromium, because three.js USDZExporter needs
+// FitCheck exporter page (spec 6.5). Runs in headless Chromium, because three.js USDZExporter needs
 // a real canvas for textures (it fails in plain Node).
 //
 //   window.exportItem({ glbB64 | glbUrl, w_in, d_in, h_in, category, dims_source, orient_override, yaw_deg })

@@ -21,9 +21,9 @@ async function load(idRaw: string) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const it = await load((await params).id);
-    return it ? { title: `${it.card.title} | LiveRoom` } : { title: 'Item not found | LiveRoom' };
+    return it ? { title: `${it.card.title} | FitCheck` } : { title: 'Item not found | FitCheck' };
   } catch {
-    return { title: 'LiveRoom' };
+    return { title: 'FitCheck' };
   }
 }
 

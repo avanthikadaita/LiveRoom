@@ -25,7 +25,7 @@ export async function runShopperAgent(a: {
     throw e;
   }
   await import('./index'); // registers the agent with the Mastra instance (Studio, traces)
-  const agent = (await import('./agents/liveroomShopper')).getShopperAgent();
+  const agent = (await import('./agents/FitCheckShopper')).getShopperAgent();
   const stash: AgentStash = { coords: a.coords };
   const rc = new RequestContext();
   rc.set('geminiKey', key.key);

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* LiveRoom tokens: moving-day vernacular. Brown tape accents, blanket blue, ink navy on cool paper. */
+/* FitCheck tokens: moving-day vernacular. Brown tape accents, blanket blue, ink navy on cool paper. */
 @theme {
   --color-paper: #f6f7f3;
   --color-card: #ffffff;

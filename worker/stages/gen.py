@@ -160,8 +160,8 @@ def _start_one(ctx: Ctx, asset: dict, chain: list[Provider], busy: dict[str, set
     db, lid = ctx.db, asset["listing_id"]
     state = _state(asset)
     tried = set(state.get("tried", []))
-    # demo pins and sellers' own items (source 'liveroom') always get real 3D
-    pinned = bool((db.one("select demo_pin or source = 'liveroom' as p from listings where id=%s", (lid,)) or {}).get("p"))
+    # demo pins and sellers' own items (source 'FitCheck') always get real 3D
+    pinned = bool((db.one("select demo_pin or source = 'FitCheck' as p from listings where id=%s", (lid,)) or {}).get("p"))
     policy = real_3d_policy()
     if policy == "none" or (policy == "pinned" and not pinned):
         use_generic(ctx, asset, "real 3D is reserved for demo-pinned listings")

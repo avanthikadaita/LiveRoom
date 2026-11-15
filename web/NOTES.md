@@ -1,4 +1,4 @@
-# LiveRoom web app (Person B) notes
+# FitCheck web app (Person B) notes
 
 Everything here lives in `/web`. Nothing in `/worker`, `/db`, `/scripts` or `/data` was touched.
 
@@ -26,7 +26,7 @@ npm run snapshot         # rebuild lib/data/demo_snapshot.json from the branch t
 | Single hybrid SQL (filters + pgvector + cost rank) | `lib/search/sql.ts` |
 | Keyword fallback, zod schema | `lib/search/keywordParser.ts`, `lib/search/schema.ts` |
 | `carFit`, `pickupCost`, `totalCost`, `formatDistance`, origin, AR href | `lib/logic/*` |
-| Mastra agent `liveroomShopper`, 5 tools, Neon memory | `mastra/*` |
+| Mastra agent `FitCheckShopper`, 5 tools, Neon memory | `mastra/*` |
 | Pages `/`, `/item/[id]`, `/pipeline`, `/impact`, `/admin`, `/sell` (stretch UI) | `app/*` |
 | Section 14 fallbacks | covered in `tests/unit/fallbacks.test.ts` and `tests/e2e/*` |
 
@@ -74,12 +74,12 @@ npm run snapshot         # rebuild lib/data/demo_snapshot.json from the branch t
   `npm run corner-check` runs it against Neon without queueing.
 - **/sell is live end to end**: `POST /api/seller/draft` (photo shrunk in the browser, uploaded to Blob, `seller_drafts`
   row with an edit token), `GET /api/seller/draft/[id]` to poll, `POST /api/seller/draft/[id]` `{token, ask_usd}` to
-  publish. The worker makes the hidden `liveroom` listing, a real 3D model (free HF TRELLIS first) and a fair price;
+  publish. The worker makes the hidden `FitCheck` listing, a real 3D model (free HF TRELLIS first) and a fair price;
   the seller's category choice wins over the tagger.
 - **City-only locations**: 138 of 181 Marketplace listings say only "San Diego, CA" (the city centroid, ~12.7 mi from
   UCSD). `loc_precise` is computed in `ITEM_COLUMNS`. Such items stay in pickup results when the radius is at least
   10 mi. The card says "pickup in San Diego, exact area not listed", and the spoken "closest" ignores them.
-- `liveroom` is a listing source (seller listings); the card label is "LiveRoom seller".
+- `FitCheck` is a listing source (seller listings); the card label is "FitCheck seller".
 - `/admin` GLB uploads: the worker now shrinks `manual` models (<= 150k triangles, 2K textures) before export.
 - **Gemini shares quota with the worker**: `gemini-flash-lite-latest` is `gemini-3.5-flash-lite`, which the worker also
   tags with once its other models hit their daily cap. The worker's vision RPM is set to 6 to leave room.

@@ -64,7 +64,7 @@ class Storage:
 def fetch_bytes(url: str, client: httpx.Client | None = None, max_mb: float = 60, timeout: float = 60) -> bytes:
     c = client or httpx.Client(timeout=httpx.Timeout(timeout, connect=15))
     try:
-        r = c.get(url, follow_redirects=True, headers={"user-agent": "Mozilla/5.0 (LiveRoom worker)"})
+        r = c.get(url, follow_redirects=True, headers={"user-agent": "Mozilla/5.0 (FitCheck worker)"})
     except httpx.HTTPError as e:
         raise ProviderError(f"download failed: {e}", retryable=True) from e
     if r.status_code in (403, 404, 410):

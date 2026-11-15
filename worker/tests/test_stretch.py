@@ -34,7 +34,7 @@ def test_seller_draft_becomes_a_true_scale_real_model_with_a_fair_price(ctx, mon
     assert d["comps_n"] == 3 and d["fair_price_usd"] is not None
     assert d["fair_low_usd"] <= d["fair_price_usd"] <= d["fair_high_usd"] and len(d["comp_urls"]) == 3
     lst = ctx.db.one("select * from listings where id = %s", (d["listing_id"],))
-    assert lst["source"] == "liveroom" and not lst["is_active"] and lst["lat"] is not None   # La Jolla, from geo
+    assert lst["source"] == "FitCheck" and not lst["is_active"] and lst["lat"] is not None   # La Jolla, from geo
     det = ctx.db.one("select * from listing_details where listing_id = %s", (d["listing_id"],))
     assert (float(det["w_in"]), float(det["d_in"]), float(det["h_in"])) == (25.0, 20.0, 30.0)  # 20x16x24 scaled to 30
 

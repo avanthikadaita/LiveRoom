@@ -12,7 +12,7 @@ type Draft = {
   w_in: number | null; d_in: number | null; h_in: number | null;
 };
 
-const STORE = 'liveroom.sell.draft';
+const STORE = 'FitCheck.sell.draft';
 const STEP: Record<string, string> = {
   new: 'Photo received. Waiting for the 3D worker…',
   queued: 'Reading your photo and finding similar listings…',
@@ -139,7 +139,7 @@ export default function SellPage() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <h1 className="text-4xl font-extrabold">Sell it instead of dumping it</h1>
+      <h1 className="text-4xl font-extrabold">Sell it, Don't Dumping it</h1>
       <p className="mt-2 text-lg text-muted">
         One clean photo and its height. We turn it into a true-size 3D model buyers can place in their room, and suggest a fair price from similar listings nearby.
       </p>
@@ -149,7 +149,7 @@ export default function SellPage() {
           <label className="block font-semibold">Photo of the item
             <input type="file" accept="image/*" capture="environment" className="mt-1 block w-full text-sm"
               onChange={(e) => { const f = e.target.files?.[0] ?? null; setFile(f); setPhoto(f ? URL.createObjectURL(f) : null); }} />
-            <span className="mt-1 block text-sm font-normal text-muted">For an accurate 3D model: the whole item in frame (legs included), shot from a slight corner angle at about its own height, nothing on top of it, plain wall or floor behind.</span>
+            <span className="mt-1 block text-sm font-normal text-muted">For an accurate 3D model: the whole item in frame, nothing on top of it, plain wall or floor behind.</span>
           </label>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           {photo && <img src={photo} alt="Your item" className="max-h-64 rounded-xl border border-line object-contain" />}

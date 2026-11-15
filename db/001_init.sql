@@ -1,4 +1,4 @@
--- LiveRoom schema (spec section 4). Idempotent: safe to re-run.
+-- FitCheck schema (spec section 4). Idempotent: safe to re-run.
 create extension if not exists vector;
 
 create table if not exists listings (

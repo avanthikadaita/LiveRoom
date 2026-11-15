@@ -5,7 +5,7 @@ import type { SearchArgs } from './schema';
 /** A listing joined with its details, asset and baseline, before any per-shopper math. */
 export type RawItem = {
   id: number;
-  source: 'fb_marketplace' | 'craigslist' | 'ebay' | 'liveroom';
+  source: 'fb_marketplace' | 'craigslist' | 'ebay' | 'FitCheck';
   url: string;
   title: string;
   price: number;
